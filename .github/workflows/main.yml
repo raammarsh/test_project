@@ -1,0 +1,18 @@
+name: Dev-Job
+on:
+  workflow_dispatch: 
+    branches:
+    - readne-edits
+jobs:
+  check-bats-version:
+    if: contains( github.ref, 'master')
+    runs-on: linux-ami
+    steps:
+      - uses: actions/checkout@v2
+      - run: yum update -y && test -d ~/.ssh || mkdir ~/.ssh && chmod 700 ~/.ssh && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config && chmod 600 ~/.ssh/config
+      - run: mkdir ~/bin && curl https://raw.githubusercontent.com/git-ftp/git-ftp/master/git-ftp > ~/bin/git-ftp
+      - run: chmod +x ~/bin/git-ftp
+      - run: git config --global user.email "marshgamer007@gmail.com"
+      - run: git config --global user.name "marshgamer007@gmail.com"
+      # Use git-ftp to copy all the files to the server, while keeping the connection
+      - run: git ftp init --user `test` --passwd `admin@123` "sftp://65.2.34.105:22/home/test/project/" --insecure -f
