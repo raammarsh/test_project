@@ -5,7 +5,7 @@ on:
     - readne-edits
 jobs:
   check-bats-version:
-    if: contains( github.ref, 'master')
+    if: contains( github.ref, 'readne-edits')
     runs-on: linux-ami
     steps:
       - uses: actions/checkout@v2
