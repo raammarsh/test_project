@@ -6,10 +6,10 @@ on:
 jobs:
   check-bats-version:
     if: contains( github.ref, 'readne-edits')
-    runs-on: linux-ami
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: yum update -y && test -d ~/.ssh || mkdir ~/.ssh && chmod 700 ~/.ssh && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config && chmod 600 ~/.ssh/config
+      - run: apt-get update -y && test -d ~/.ssh || mkdir ~/.ssh && chmod 700 ~/.ssh && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config && chmod 600 ~/.ssh/config
       - run: mkdir ~/bin && curl https://raw.githubusercontent.com/git-ftp/git-ftp/master/git-ftp > ~/bin/git-ftp
       - run: chmod +x ~/bin/git-ftp
       - run: git config --global user.email "marshgamer007@gmail.com"
