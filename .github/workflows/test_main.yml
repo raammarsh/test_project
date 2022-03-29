@@ -16,4 +16,4 @@ jobs:
       - run: git config --global user.name "marshgamer007@gmail.com"
       # Use git-ftp to copy all the files to the server, while keeping the connections
       #- run: git ftp init --user $USER_NAME --passwd $PASSWORD sftp://$SERVER-URL:22/home/test/ -vv
-      - run: git ftp push --user $USER_NAME --passwd $PASSWORD "sftp://65.0.106.149:22/home/test/" -f
+      - run: git ftp push --user "$USER_NAME" --passwd "$PASSWORD" "sftp://$SFTP_HOST:22/" -f
